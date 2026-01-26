@@ -1,5 +1,14 @@
 # Configuración del Proyecto
 
+## URLs del Proyecto
+
+| Servicio | URL |
+|----------|-----|
+| **n8n** | https://n8n.srv1122579.hstgr.cloud |
+| **Workflow** | ZxKpo498eFa2jNZxtdeBQ |
+| **GitHub** | https://github.com/tatiana441/n8n-app |
+| **Vercel** | (pendiente de configurar) |
+
 ## Flujo de Trabajo
 
 1. **n8n** → Procesa los datos del formulario

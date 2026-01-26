@@ -1,0 +1,18 @@
+{
+  "n8n": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "@anthropic/n8n-mcp"],
+    "env": {
+      "N8N_API_URL": "https://n8n.srv1122579.hstgr.cloud/api/v1",
+      "N8N_API_KEY": "${N8N_API_KEY}"
+    }
+  },
+  "github": {
+    "type": "http",
+    "url": "https://api.githubcopilot.com/mcp/",
+    "headers": {
+      "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
+    }
+  }
+}
