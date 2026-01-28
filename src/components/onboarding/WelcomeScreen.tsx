@@ -38,25 +38,6 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
           />
         </motion.div>
 
-        {/* Title */}
-        <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="font-display text-3xl font-bold text-keimi-dark mb-3"
-        >
-          Keimi
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-keimi-primary font-medium mb-6"
-        >
-          Korean Beauty Secret
-        </motion.p>
-
         {/* Description */}
         <motion.p
           initial={{ opacity: 0 }}
