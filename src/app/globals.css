@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --keimi-dark: #1A2828;
+  --keimi-cream: #F5EDEA;
+  --keimi-mint: #A9EFC9;
+  --keimi-teal: #2FC4B1;
+  --keimi-primary: #016A70;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--keimi-dark);
+  background-color: var(--keimi-cream);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Scrollbar KEIMI */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--keimi-teal);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--keimi-primary);
+}
+
+/* Typography */
+.font-display {
+  font-family: 'Comfortaa', sans-serif;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--keimi-teal);
+  outline-offset: 2px;
+}
+
+/* Button base */
+.btn {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-200;
+}
+
+.btn-primary {
+  @apply bg-keimi-primary text-white hover:bg-keimi-dark active:scale-95;
+}
+
+.btn-secondary {
+  @apply bg-keimi-teal text-keimi-dark hover:bg-keimi-mint active:scale-95;
+}
+
+.btn-ghost {
+  @apply bg-transparent text-keimi-primary hover:bg-keimi-mint/30 active:scale-95;
+}
+
+/* Card base */
+.card {
+  @apply bg-white rounded-2xl p-4 shadow-sm border border-keimi-cream;
+}
+
+/* Input base */
+.input {
+  @apply w-full px-4 py-3 rounded-full border border-gray-200 bg-white text-keimi-dark placeholder-gray-400;
+  @apply focus:outline-none focus:ring-2 focus:ring-keimi-teal focus:border-transparent;
+  @apply transition-all duration-200;
+}
+
+/* Message bubbles */
+.message-user {
+  @apply bg-keimi-primary text-white rounded-2xl rounded-br-md;
+}
+
+.message-assistant {
+  @apply bg-white text-keimi-dark rounded-2xl rounded-bl-md shadow-sm border border-keimi-cream;
+}
+
+/* Loading dots */
+.loading-dot {
+  @apply w-2 h-2 rounded-full bg-keimi-teal;
+  animation: loadingPulse 1.4s ease-in-out infinite;
+}
+
+.loading-dot:nth-child(1) { animation-delay: 0s; }
+.loading-dot:nth-child(2) { animation-delay: 0.2s; }
+.loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes loadingPulse {
+  0%, 80%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Level badge colors */
+.level-1 { @apply bg-gray-100 text-gray-600; }
+.level-2 { @apply bg-keimi-mint text-keimi-dark; }
+.level-3 { @apply bg-keimi-teal text-keimi-dark; }
+.level-4 { @apply bg-keimi-primary text-white; }
+.level-5 { @apply bg-gradient-to-r from-keimi-primary to-keimi-teal text-white; }
+
+/* Streak fire animation */
+@keyframes fireGlow {
+  0%, 100% { filter: drop-shadow(0 0 2px #ff6b35); }
+  50% { filter: drop-shadow(0 0 8px #ff6b35); }
+}
+
+.streak-fire {
+  animation: fireGlow 1.5s ease-in-out infinite;
+}
+
+/* Safe area for mobile */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0);
+}
