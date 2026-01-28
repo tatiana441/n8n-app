@@ -10,6 +10,7 @@ import {
   canSendMessage,
   incrementDailyUsage,
   getRemainingMessages,
+  getUser,
 } from "@/lib/storage";
 import { recordActivity } from "@/lib/gamification";
 
@@ -89,12 +90,23 @@ export function useChat() {
     recordActivity();
 
     try {
+      // Get user data to include in request
+      const user = getUser();
+
       const response = await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: content.trim() }),
+        body: JSON.stringify({
+          message: content.trim(),
+          userProfile: user ? {
+            name: user.name,
+            skinType: user.skinType,
+            concern: user.concern,
+            experience: user.experience,
+          } : null,
+        }),
       });
 
       if (!response.ok) {
