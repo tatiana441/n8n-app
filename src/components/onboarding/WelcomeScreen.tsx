@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
-import { Sparkles } from "lucide-react";
+import { Sparkles, LogIn } from "lucide-react";
 
 const KEIMI_LOGO = "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop,q=95/mnl3K9jZa0cGy7xQ/logo-12-m7Vw70X24qI7DNgg.png";
 const INSTAGRAM_URL = "https://www.instagram.com/keimi_kbs/";
@@ -11,9 +11,10 @@ const TIKTOK_URL = "https://www.tiktok.com/@keimikbs";
 
 interface WelcomeScreenProps {
   onStart: () => void;
+  onLogin: () => void;
 }
 
-export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
+export default function WelcomeScreen({ onStart, onLogin }: WelcomeScreenProps) {
   return (
     <div className="min-h-screen bg-keimi-cream flex flex-col items-center justify-center p-6">
       <motion.div
@@ -69,11 +70,12 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
           )}
         </motion.div>
 
-        {/* CTA Button */}
+        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
+          className="space-y-3"
         >
           <Button
             onClick={onStart}
@@ -83,6 +85,16 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
           >
             Comenzar mi viaje K-Beauty
           </Button>
+
+          <Button
+            onClick={onLogin}
+            variant="ghost"
+            size="md"
+            className="w-full max-w-xs"
+            leftIcon={<LogIn className="w-4 h-4" />}
+          >
+            Ya tengo cuenta
+          </Button>
         </motion.div>
 
         {/* Footer note */}
@@ -90,7 +102,7 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="text-xs text-gray-400 mt-6"
+          className="text-xs text-gray-400 mt-4"
         >
           Solo tomara 1 minuto configurar tu perfil
         </motion.p>

@@ -4,12 +4,13 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import WelcomeScreen from "@/components/onboarding/WelcomeScreen";
 import SkinQuiz from "@/components/onboarding/SkinQuiz";
-import { isOnboardingComplete, setOnboardingComplete, setUser, generateId } from "@/lib/storage";
+import LoginScreen from "@/components/onboarding/LoginScreen";
+import { isOnboardingComplete, setOnboardingComplete, setUser, getUser, generateId } from "@/lib/storage";
 import { sendUserRegistration } from "@/lib/api";
 import { initializeGamification } from "@/lib/gamification";
 import type { SkinType, SkinConcern, ExperienceLevel } from "@/types";
 
-type OnboardingStep = "welcome" | "quiz" | "complete";
+type OnboardingStep = "welcome" | "quiz" | "login" | "complete";
 
 export default function Home() {
   const router = useRouter();
@@ -27,6 +28,37 @@ export default function Home() {
 
   const handleStartQuiz = () => {
     setStep("quiz");
+  };
+
+  const handleLogin = () => {
+    setStep("login");
+  };
+
+  const handleLoginSuccess = (email: string) => {
+    // Check if we have existing user data for this email
+    const existingUser = getUser();
+
+    if (existingUser && existingUser.email === email) {
+      // User data exists, go to chat
+      setOnboardingComplete(true);
+      router.push("/chat");
+    } else {
+      // User verified but no local data, create minimal profile
+      const userData = {
+        id: generateId(),
+        name: email.split("@")[0],
+        email: email,
+        skinType: "normal" as SkinType,
+        concern: "hydration" as SkinConcern,
+        experience: "beginner" as ExperienceLevel,
+        createdAt: new Date().toISOString(),
+      };
+
+      setUser(userData);
+      initializeGamification();
+      setOnboardingComplete(true);
+      router.push("/chat");
+    }
   };
 
   const handleQuizComplete = async (data: {
@@ -81,9 +113,14 @@ export default function Home() {
 
   return (
     <>
-      {step === "welcome" && <WelcomeScreen onStart={handleStartQuiz} />}
+      {step === "welcome" && (
+        <WelcomeScreen onStart={handleStartQuiz} onLogin={handleLogin} />
+      )}
       {step === "quiz" && (
         <SkinQuiz onComplete={handleQuizComplete} onBack={handleBackToWelcome} />
+      )}
+      {step === "login" && (
+        <LoginScreen onBack={handleBackToWelcome} onLoginSuccess={handleLoginSuccess} />
       )}
     </>
   );

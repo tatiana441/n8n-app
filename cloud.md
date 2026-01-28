@@ -5,9 +5,33 @@
 | Servicio | URL |
 |----------|-----|
 | **n8n** | https://n8n.srv1122579.hstgr.cloud |
-| **Workflow** | ZxKpo498eFa2jNZxtdeBQ |
+| **Workflow ID** | ZxKpo498eFa2jNZxtdeBQ |
+| **Webhook URL** | https://n8n.srv1122579.hstgr.cloud/webhook/0a9f80ce-a76b-4965-a737-50fe442bec4b |
 | **GitHub** | https://github.com/tatiana441/n8n-app |
 | **Vercel** | (pendiente de configurar) |
+
+## Workflow N8N-CLAUDE
+
+El workflow está **ACTIVO** y configurado para:
+
+1. **Webhook** (POST) - Recibe mensajes del frontend
+2. **AI Agent** - Procesa con GPT-4.1-mini como asistente de skincare coreano
+3. **Respond to Webhook** - Devuelve respuesta JSON
+
+**Formato de request:**
+```json
+{
+  "message": "Tu mensaje aquí"
+}
+```
+
+**Formato de response:**
+```json
+{
+  "success": true,
+  "response": "Respuesta del asistente",
+  "timestamp": "2026-01-27T..."
+}
 
 ## Flujo de Trabajo
 
@@ -72,13 +96,20 @@ Crea interfaces **distintivas y profesionales**, evitando diseño genérico.
 
 ```
 /
-├── cloud.md              # Este archivo
+├── cloud.md              # Configuración del proyecto
+├── .mcp.json             # Configuración de MCPs
+├── package.json          # Dependencias npm
+├── tailwind.config.ts    # Estilos Tailwind
+├── next.config.mjs       # Configuración Next.js
+├── tsconfig.json         # TypeScript
 ├── src/
-│   ├── app/              # Rutas de Next.js
-│   ├── components/       # Componentes React
-│   └── lib/              # Utilidades y API
-├── public/               # Archivos estáticos
-└── package.json
+│   └── app/
+│       ├── layout.tsx    # Layout principal
+│       ├── page.tsx      # Chat de skincare
+│       └── globals.css   # Estilos globales
+├── .claude/
+│   └── skills/           # Skills de n8n instalados
+└── node_modules/
 ```
 
 ## Proceso de Desarrollo
