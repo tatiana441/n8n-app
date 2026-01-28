@@ -5,7 +5,7 @@ const CHAT_WEBHOOK_URL = 'https://n8n.srv1122579.hstgr.cloud/webhook/0a9f80ce-a7
 
 // This webhook will receive user registration data
 // You need to create this webhook in n8n and connect it to Google Sheets
-const REGISTRATION_WEBHOOK_URL = 'https://n8n.srv1122579.hstgr.cloud/webhook/user-registration';
+const REGISTRATION_WEBHOOK_URL = 'https://n8n.srv1122579.hstgr.cloud/webhook/keimi-user-registration';
 
 // Send chat message to n8n
 export async function sendChatMessage(message: string): Promise<{ success: boolean; response: string }> {
