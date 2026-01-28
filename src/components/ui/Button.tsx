@@ -33,19 +33,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center gap-2 font-medium rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-keimi-teal focus-visible:ring-offset-2";
+      "inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-keimi-teal focus-visible:ring-offset-2 shadow-soft hover:shadow-soft-lg";
 
     const variants = {
-      primary: "bg-keimi-primary text-white hover:bg-keimi-dark active:scale-95 disabled:opacity-50",
-      secondary: "bg-keimi-teal text-keimi-dark hover:bg-keimi-mint active:scale-95 disabled:opacity-50",
-      ghost: "bg-transparent text-keimi-primary hover:bg-keimi-mint/30 active:scale-95 disabled:opacity-50",
-      outline: "bg-transparent border-2 border-keimi-primary text-keimi-primary hover:bg-keimi-primary hover:text-white active:scale-95 disabled:opacity-50",
+      primary: "bg-gradient-to-r from-keimi-primary to-keimi-teal text-white hover:from-keimi-dark hover:to-keimi-primary active:scale-95 disabled:opacity-50 shadow-glow hover:shadow-glow-lg",
+      secondary: "bg-gradient-to-r from-keimi-teal to-keimi-mint text-keimi-dark hover:from-keimi-mint hover:to-keimi-teal active:scale-95 disabled:opacity-50",
+      ghost: "bg-white/60 backdrop-blur-sm text-keimi-primary border border-keimi-primary/20 hover:bg-keimi-mint/30 hover:border-keimi-primary/40 active:scale-95 disabled:opacity-50 shadow-none hover:shadow-soft",
+      outline: "bg-transparent border-2 border-keimi-primary text-keimi-primary hover:bg-gradient-to-r hover:from-keimi-primary hover:to-keimi-teal hover:text-white hover:border-transparent active:scale-95 disabled:opacity-50",
     };
 
     const sizes = {
-      sm: "px-3 py-1.5 text-sm",
-      md: "px-4 py-2.5 text-base",
-      lg: "px-6 py-3 text-lg",
+      sm: "px-4 py-2 text-sm",
+      md: "px-5 py-2.5 text-base",
+      lg: "px-7 py-3.5 text-lg",
     };
 
     return (
@@ -53,6 +53,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         whileTap={{ scale: disabled || isLoading ? 1 : 0.95 }}
+        whileHover={{ scale: disabled || isLoading ? 1 : 1.02 }}
         className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
         disabled={disabled || isLoading}
         onClick={onClick}

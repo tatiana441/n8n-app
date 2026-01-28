@@ -17,37 +17,38 @@ interface HeaderProps {
 
 export default function Header({ level, levelName, streak, userName }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-50 glass border-b border-keimi-cream/50 safe-top">
+    <header className="sticky top-0 z-50 glass border-b border-white/30 safe-top shadow-soft">
       <div className="px-4 py-3">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <Link href="/chat" className="flex items-center gap-3">
-            <div className="w-10 h-10 relative">
+          <Link href="/chat" className="flex items-center gap-3 group">
+            <div className="w-11 h-11 relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-keimi-teal/20 to-keimi-mint/20 rounded-full blur-md group-hover:blur-lg transition-all" />
               <Image
                 src={KEIMI_LOGO}
                 alt="KEIMI"
                 fill
-                className="object-contain"
+                className="object-contain relative z-10 drop-shadow-sm"
               />
             </div>
             <div className="hidden sm:block">
-              <h1 className="font-display font-semibold text-keimi-dark leading-tight">
+              <h1 className="font-display font-bold gradient-text leading-tight text-lg">
                 Keimi
               </h1>
-              <p className="text-xs text-keimi-primary">
+              <p className="text-xs text-keimi-teal font-medium">
                 Tu secreto K-Beauty
               </p>
             </div>
           </Link>
 
           {/* Center - Level Badge (tablet+) */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
             <LevelBadge level={level} levelName={levelName} />
             <StreakCounter streak={streak} />
           </div>
 
           {/* Right - Mobile: Level mini, Desktop: Profile */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             {/* Mobile level indicator */}
             <div className="md:hidden">
               <LevelBadge level={level} levelName={levelName} size="sm" />
@@ -56,18 +57,18 @@ export default function Header({ level, levelName, streak, userName }: HeaderPro
             {/* Profile button */}
             <Link
               href="/profile"
-              className="flex items-center gap-2 px-3 py-2 rounded-full hover:bg-keimi-mint/30 transition-colors"
+              className="flex items-center gap-2 px-3 py-2 rounded-full bg-white/50 hover:bg-white/80 border border-white/50 hover:border-keimi-teal/30 transition-all duration-300 hover:shadow-soft group"
             >
-              <div className="w-8 h-8 rounded-full bg-keimi-mint flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-keimi-mint to-keimi-teal/50 flex items-center justify-center shadow-inner-glow">
                 {userName ? (
-                  <span className="text-keimi-primary font-medium text-sm">
+                  <span className="text-keimi-primary font-bold text-sm">
                     {userName.charAt(0).toUpperCase()}
                   </span>
                 ) : (
                   <User className="w-4 h-4 text-keimi-primary" />
                 )}
               </div>
-              <span className="hidden lg:block text-sm font-medium text-keimi-dark">
+              <span className="hidden lg:block text-sm font-medium text-keimi-dark group-hover:text-keimi-primary transition-colors">
                 {userName || "Perfil"}
               </span>
             </Link>
