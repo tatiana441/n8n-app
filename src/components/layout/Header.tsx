@@ -1,9 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { User } from "lucide-react";
 import LevelBadge from "@/components/gamification/LevelBadge";
 import StreakCounter from "@/components/gamification/StreakCounter";
+
+const KEIMI_LOGO = "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop,q=95/mnl3K9jZa0cGy7xQ/logo-12-m7Vw70X24qI7DNgg.png";
 
 interface HeaderProps {
   level: number;
@@ -19,8 +22,13 @@ export default function Header({ level, levelName, streak, userName }: HeaderPro
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <Link href="/chat" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-keimi-teal to-keimi-primary flex items-center justify-center">
-              <span className="text-white font-display font-bold text-lg">K</span>
+            <div className="w-10 h-10 relative">
+              <Image
+                src={KEIMI_LOGO}
+                alt="KEIMI"
+                fill
+                className="object-contain"
+              />
             </div>
             <div className="hidden sm:block">
               <h1 className="font-display font-semibold text-keimi-dark leading-tight">
